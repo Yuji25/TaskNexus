@@ -1,0 +1,89 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Documentation & Guidelines ###
+others/
+
+### Environment Variables ###
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+### IDE Specific Files ###
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+### Sensitive Configuration ###
+application-prod.properties
+application-secrets.properties
+application.properties
+*.key
+*.pem
+
+### Local Files ###
+.classpath
+.project
+*.log
+logs/
+*.pid
+
+### Runtime & Temporary ###
+*.tmp
+temp/
+tmp/
+uploads/
+*.jar
+*.war
+*.rar
+
+### Package Files ###
+dist/
+*.egg-info/
+.Python
+*.pyc
+
+### OS Generated Files ###
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+
