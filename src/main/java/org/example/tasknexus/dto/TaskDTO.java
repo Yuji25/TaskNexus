@@ -46,7 +46,7 @@ public class TaskDTO {
         dto.setDescription(task.getDescription());
         dto.setStatus(task.getStatus());
         dto.setPriority(task.getPriority());
-        dto.setUserId(task.getUser().getId());
+        dto.setUserId(task.getUserId());
         dto.setDueDate(task.getDueDate());
         dto.setTags(task.getTags());
         dto.setAttachments(task.getAttachments());
@@ -60,15 +60,15 @@ public class TaskDTO {
 
     /**
      * Convert TaskDTO to Task entity
-     * Note: Requires user to be set separately as userId is not enough
      */
     public Task toEntity() {
         Task task = new Task();
         task.setId(this.id);
         task.setTitle(this.title);
         task.setDescription(this.description);
-        task.setStatus(this.status != null ? this.status : TaskStatus.TODO);
-        task.setPriority(this.priority);
+        task.setStatus(this.status != null ? this.status : TaskStatus.PENDING);
+        task.setPriority(this.priority != null ? this.priority : TaskPriority.MEDIUM);
+        task.setUserId(this.userId);
         task.setDueDate(this.dueDate);
         task.setTags(this.tags);
         task.setAttachments(this.attachments);

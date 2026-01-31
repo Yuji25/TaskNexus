@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * TaskRepository
@@ -25,11 +24,18 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findByUserId(Long userId);
 
-    Page<Task> findByUserIdAndStatus(Long userId, TaskStatus status, Pageable pageable);
+    List<Task> findByUserIdAndStatus(Long userId, TaskStatus status);
 
-    Page<Task> findByUserIdAndPriority(Long userId, TaskPriority priority, Pageable pageable);
+    List<Task> findByUserIdAndPriority(Long userId, TaskPriority priority);
 
-    @Query("SELECT t FROM Task t WHERE t.user.id = :userId AND " +
+    List<Task> findByUserIdAndTitleContainingIgnoreCaseOrUserIdAndDescriptionContainingIgnoreCase(
+            Long userId1, String title, Long userId2, String description);
+
+    List<Task> findByUserIdAndDueDateBeforeAndStatusNot(Long userId, LocalDateTime date, TaskStatus status);
+
+    List<Task> findByUserIdAndDueDateBetween(Long userId, LocalDateTime startDate, LocalDateTime endDate);
+
+    @Query("SELECT t FROM Task t WHERE t.userId = :userId AND " +
            "(t.status = :status OR :status IS NULL) AND " +
            "(t.priority = :priority OR :priority IS NULL) AND " +
            "(LOWER(t.title) LIKE LOWER(CONCAT('%', :search, '%')) OR :search IS NULL) " +
@@ -42,7 +48,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
             Pageable pageable
     );
 
-    @Query("SELECT t FROM Task t WHERE t.user.id = :userId AND t.dueDate BETWEEN :startDate AND :endDate " +
+    @Query("SELECT t FROM Task t WHERE t.userId = :userId AND t.dueDate BETWEEN :startDate AND :endDate " +
            "ORDER BY t.dueDate ASC")
     List<Task> findTasksByDateRange(
             @Param("userId") Long userId,
@@ -50,12 +56,10 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
             @Param("endDate") LocalDateTime endDate
     );
 
-    @Query("SELECT t FROM Task t WHERE t.user.id = :userId AND t.dueDate < CURRENT_TIMESTAMP AND t.status != 'COMPLETED'")
+    @Query("SELECT t FROM Task t WHERE t.userId = :userId AND t.dueDate < CURRENT_TIMESTAMP AND t.status != 'COMPLETED'")
     List<Task> findOverdueTasks(@Param("userId") Long userId);
 
     Page<Task> findByStatusAndUserId(TaskStatus status, Long userId, Pageable pageable);
 
     Long countByUserIdAndStatus(Long userId, TaskStatus status);
-
-    Long countByUserIdAndIsCompleted(Long userId, Boolean isCompleted);
 }

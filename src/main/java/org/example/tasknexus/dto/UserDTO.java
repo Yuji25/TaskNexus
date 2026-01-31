@@ -20,8 +20,7 @@ public class UserDTO {
     private Long id;
     private String email;
     private String username;
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private Role role;
     private Boolean isActive;
     private LocalDateTime createdAt;
@@ -41,8 +40,7 @@ public class UserDTO {
         dto.setId(user.getId());
         dto.setEmail(user.getEmail());
         dto.setUsername(user.getUsername());
-        dto.setFirstName(user.getFirstName());
-        dto.setLastName(user.getLastName());
+        dto.setFullName(user.getFullName());
         dto.setRole(user.getRole());
         dto.setIsActive(user.getIsActive());
         dto.setCreatedAt(user.getCreatedAt());
@@ -61,8 +59,7 @@ public class UserDTO {
         user.setId(this.id);
         user.setEmail(this.email);
         user.setUsername(this.username);
-        user.setFirstName(this.firstName);
-        user.setLastName(this.lastName);
+        user.setFullName(this.fullName);
         user.setRole(this.role);
         user.setIsActive(this.isActive);
         user.setPhoneNumber(this.phoneNumber);

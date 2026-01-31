@@ -32,18 +32,20 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TaskStatus status = TaskStatus.TODO;
+    private TaskStatus status = TaskStatus.PENDING;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TaskPriority priority;
+    private TaskPriority priority = TaskPriority.MEDIUM;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     @Column(name = "due_date")
     private LocalDateTime dueDate;
+
+    @Column(name = "completed_at")
+    private LocalDateTime completedAt;
 
     @Column(length = 1000)
     private String tags;
