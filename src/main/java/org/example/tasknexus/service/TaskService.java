@@ -7,6 +7,7 @@ import org.example.tasknexus.exception.ValidationException;
 import org.example.tasknexus.model.Task;
 import org.example.tasknexus.model.TaskPriority;
 import org.example.tasknexus.model.TaskStatus;
+import org.example.tasknexus.model.User;
 import org.example.tasknexus.repository.TaskRepository;
 import org.example.tasknexus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
